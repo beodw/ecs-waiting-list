@@ -148,7 +148,7 @@ const App = () => {
   const ChooseContact = () => {
     return (
       <>
-        <div className="flex md:px-0 sm:px-12 md:py-4 justify-between xs:w-1/2 w-full md:w-fit mt-2">
+        <div className="flex sm:px-12 md:py-4 justify-between xs:w-1/2 w-full md:w-fit mt-2">
           <button
             className="bg-gold font-boldhover:text-white rounded-full px-[45px] sm:px-[90px] md:px-12 lg:px-20 py-2 md:py-4 shadow-xl"
             type="button"
@@ -213,7 +213,7 @@ const App = () => {
                 Enter your email or phone below to join the waiting list.
               </p>
               <form onSubmit={submit}>
-                <div className="flex justify-between max-w-lg">
+                <div className="flex justify-between">
                   {isPhone === null ? (
                     <ChooseContact />
                   ) : isPhone ? (
