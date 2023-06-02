@@ -26,7 +26,9 @@ const App = () => {
       }
       phone = phone.trim().replace("-", "");
       if (!phoneRegex.test(phone)) {
-        alert("Invalid phone number. Enure you have a leading 0.");
+        alert(
+          "Invalid phone number. Enure you have a leading 0 and it is atleast 10 digits long."
+        );
         return;
       }
       payLoad = {
@@ -67,7 +69,10 @@ const App = () => {
             alert("Invalid phone number.");
             break;
           case 422:
-            console.log(response);
+            alert("Invalid phone number.");
+            break;
+          case 500:
+            alert("Invalid phone number.");
             break;
           default:
             break;
@@ -199,7 +204,7 @@ const App = () => {
             hideMain ? "opacity-0" : "opacity-1"
           } transition-opacity ease-in duration-700 px-2 md:px-12 flex flex-col h-screen w-screen justify-between`}
         >
-          <div className="flex font-bold text-lg md:text-2xl">ECS Platform</div>
+          <div className="flex font-bold text-lg md:text-4xl">ECS Platform</div>
 
           <div className="flex md:flex-row flex-col-reverse justify-between items-center w-full grow">
             <div className="flex flex-col w-full px-2 md:w-1/2 text-justify">
