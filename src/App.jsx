@@ -12,7 +12,7 @@ const App = () => {
   const [revealDone, setRevealDone] = useState(false);
   const [hideMain, setHideMain] = useState(false);
   var emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-  var phoneRegex = /^\d{9}$|^\d{15}$/;
+  var phoneRegex = /^\d{9,15}$/;
 
   const submit = (e) => {
     e.preventDefault();
@@ -26,7 +26,7 @@ const App = () => {
       }
       phone = phone.trim().replace("-", "");
       if (!phoneRegex.test(phone)) {
-        alert("Invalid phone number. Enure it is between 9 to 10 digits long.");
+        alert("Invalid phone number. Enure it is between 9 to 15 digits long.");
         return;
       }
       payLoad = {
