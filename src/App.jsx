@@ -199,7 +199,7 @@ const App = () => {
         >
           <div className="flex font-bold text-lg md:text-2xl">ECS Platform</div>
 
-          <div className="flex md:flex-row flex-col-reverse justify-between items-center w-full grow">
+          <div className="mb-2 flex md:flex-row flex-col-reverse justify-between items-center w-full grow">
             <div className="flex flex-col w-full px-2 md:w-1/2 text-justify">
               <h1 className="text-4xl lg:text-[60px] md:text-[30px] font-bold mb-4">
                 Meet senders
