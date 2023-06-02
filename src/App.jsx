@@ -24,8 +24,9 @@ const App = () => {
         alert("You must select a country code.");
         return;
       }
+      phone = phone.trim().replace("-", "");
       if (!phoneRegex.test(phone)) {
-        alert("Invalid phone number");
+        alert("Invalid phone number. Enure you have a leading 0.");
         return;
       }
       payLoad = {
@@ -63,7 +64,7 @@ const App = () => {
             alert("That email or phone has already signed up.");
             break;
           case 404:
-            alert("Invalid phone.");
+            alert("Invalid phone number.");
             break;
           case 422:
             console.log(response);
@@ -149,7 +150,7 @@ const App = () => {
   const ChooseContact = () => {
     return (
       <>
-        <div className="flex sm:px-12 md:py-4 justify-between xs:w-1/2 w-full md:w-fit mt-2">
+        <div className="flex md:px-0 sm:px-12 md:py-4 justify-between xs:w-1/2 w-full md:w-fit mt-2">
           <button
             className="bg-gold font-boldhover:text-white rounded-full px-[45px] sm:px-[90px] md:px-12 lg:px-20 py-2 md:py-4 shadow-xl"
             type="button"
@@ -214,7 +215,7 @@ const App = () => {
                 Enter your email or phone below to join the waiting list.
               </p>
               <form onSubmit={submit}>
-                <div className="flex justify-between">
+                <div className="flex justify-between max-w-lg">
                   {isPhone === null ? (
                     <ChooseContact />
                   ) : isPhone ? (
