@@ -26,9 +26,7 @@ const App = () => {
       }
       phone = phone.trim().replace("-", "");
       if (!phoneRegex.test(phone)) {
-        alert(
-          "Invalid phone number. Enure you have a leading 0 and it is atleast 10 digits long."
-        );
+        alert("Invalid phone number. Enure it is between 9 to 10 digits long.");
         return;
       }
       payLoad = {
