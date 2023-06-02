@@ -12,7 +12,7 @@ const App = () => {
   const [revealDone, setRevealDone] = useState(false);
   const [hideMain, setHideMain] = useState(false);
   var emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-  var phoneRegex = /^0\d{9}$|^0\d{10}$/;
+  var phoneRegex = /^\d{9}$|^\d{10}$/;
 
   const submit = (e) => {
     e.preventDefault();
