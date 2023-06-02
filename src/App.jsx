@@ -1,6 +1,7 @@
 import { useState } from "react";
 import LandingPage from "../assets/LandingPage.png";
 import Approve from "../assets/approve.png";
+import "./App.css";
 import countries from "./utils/countries";
 const endpointUrl = "/api/waitingList";
 
