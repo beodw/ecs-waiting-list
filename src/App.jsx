@@ -51,7 +51,6 @@ const App = () => {
       body: JSON.stringify(payLoad),
     })
       .then((response) => {
-        alert(response.status);
         switch (response.status) {
           // case 302:
           //   alert("sdsdf");
@@ -207,10 +206,7 @@ const App = () => {
               <h1 className="my-4 text-md md:text-lg lg:text-xl">
                 An easy way to meet fellow Africans that can help you get money
                 overseas to loved ones.
-                <span className="italic font-bold">
-                  {" "}
-                  It's as simple as 123.
-                </span>
+                <span className="italic font-bold">It's as simple as 123.</span>
               </h1>
               <p className="text-sm  md:text-sm lg:text-lg mb-4">
                 Enter your email or phone below to join the waiting list.
