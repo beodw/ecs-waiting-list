@@ -3,7 +3,7 @@ import LandingPage from "../assets/LandingPage.png";
 import Approve from "../assets/approve.png";
 import "./App.css";
 import countries from "./utils/countries";
-const endpointUrl = "http://161.35.170.95/api/waiting-list-registration";
+const endpointUrl = "/api/waitingList";
 
 const App = () => {
   const [isPhone, setIsPhone] = useState(null);

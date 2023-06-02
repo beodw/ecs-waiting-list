@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/api/waitingList",
+            "destination": "http://161.35.170.95/api/waiting-list-registration"
+        }
+    ]
+}
