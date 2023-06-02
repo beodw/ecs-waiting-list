@@ -11,7 +11,7 @@ const App = () => {
   const [revealDone, setRevealDone] = useState(false);
   const [hideMain, setHideMain] = useState(false);
   var emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-  var phoneRegex = /^0\d{9}$|^0\d{10}$/;
+  // var phoneRegex = /^(\+\d{1,3}\s)?\(?\d{1,4}\)?[\s.-]?\d{1,4}[\s.-]?\d{1,9}$/;
 
   const submit = (e) => {
     e.preventDefault();
@@ -19,14 +19,14 @@ const App = () => {
     if (isPhone) {
       var phone = document.getElementById("phone-input").value;
       var country_code = document.getElementById("country-code").value;
-      if (country_code == "default") {
-        alert("You must select a country code.");
+      if (phone == "default") {
+        alert("You must select a country");
         return;
       }
-      if (!phoneRegex.test(phone)) {
-        alert("Invalid phone number");
-        return;
-      }
+      // if (!phoneRegex.test()) {
+      //   alert("Invalid phone number");
+      //   return;
+      // }
       payLoad = {
         whatsapp_number: phone,
         country_code: country_code,
@@ -51,6 +51,9 @@ const App = () => {
     })
       .then((response) => {
         switch (response.status) {
+          // case 302:
+          //   alert("sdsdf");
+          //   break;
           case 200:
             setHideMain(true);
             setTimeout(() => {
@@ -62,10 +65,9 @@ const App = () => {
             alert("That email or phone has already signed up.");
             break;
           case 404:
-            alert("Invalid phone.");
-            break;
+            alert("Invalid email or phone.");
           case 422:
-            console.log(response);
+            alert(response.message);
             break;
           default:
             break;
@@ -106,7 +108,7 @@ const App = () => {
         />
 
         <button
-          className="bg-gold ml-2 lg:ml-4 font-bold lg:hover:text-white lg:hover:bg-black rounded-full lg:px-24 shadow-xl w-1/2 lg:w-[320px]"
+          className="bg-gold ml-2 lg:ml-4 font-bold hover:bg-black hover:text-white rounded-full lg:px-24 shadow-xl w-1/2 lg:w-[320px]"
           type="button"
           onClick={(e) => submit(e)}
         >
@@ -135,7 +137,7 @@ const App = () => {
           id="phone-input"
         />
         <button
-          className="bg-gold ml-2 lg:ml-4 font-bold  lg:hover:text-white lg:hover:bg-black rounded-full lg:px-24 shadow-xl w-1/2 lg:w-[320px]"
+          className="bg-gold ml-2 lg:ml-4 font-bold hover:bg-black hover:text-white rounded-full lg:px-24 shadow-xl w-1/2 lg:w-[320px]"
           type="button"
           onClick={(e) => submit(e)}
         >
@@ -148,16 +150,16 @@ const App = () => {
   const ChooseContact = () => {
     return (
       <>
-        <div className="flex sm:px-12 md:py-4 justify-between xs:w-1/2 w-full md:w-fit mt-2">
+        <div className="flex md:py-4 justify-between xs:w-1/2 w-full md:w-fit mt-2">
           <button
-            className="bg-gold font-boldhover:text-white rounded-full px-[45px] sm:px-[90px] md:px-12 lg:px-20 py-2 md:py-4 shadow-xl"
+            className="bg-gold font-bold hover:bg-black hover:text-white rounded-full px-[45px] sm:px-[90px] md:px-12 lg:px-20 py-2 md:py-4 shadow-xl"
             type="button"
             onClick={() => setIsPhone(false)}
           >
             Email
           </button>
           <button
-            className="bg-gold md:ml-4 font-bold  lg:hover:text-white lg:hover:bg-black rounded-full px-[45px] sm:px-[90px] py-2 md:py-4 md:px-12 lg:px-20 shadow-xl"
+            className="bg-gold md:ml-4 font-bold hover:bg-black hover:text-white rounded-full px-[45px] sm:px-[90px] py-2 md:py-4 md:px-12 lg:px-20 shadow-xl"
             type="button"
             onClick={() => setIsPhone(true)}
           >
@@ -176,20 +178,16 @@ const App = () => {
             revealDone
               ? "opacity-1 transition-opacity ease-in duration-700"
               : "opacity-0"
-          } px-8 w-screen h-screen flex flex-col items-center justify-center `}
+          } w-screen h-screen flex flex-col items-center justify-center `}
         >
           <img src={Approve} />
-          <div className="text-justify flex flex-col justify-center items-center">
-            <h1 className="font-bold text-4xl">Congratulations!</h1>
-            <h4 className="font-bold">
-              You have been added to the waiting list.We will contact you when
-              the platform goes live!
-            </h4>
-          </div>
-
-          {/* <h4 className="font-bold">
+          <h1 className="font-bold text-4xl">Congratulations</h1>
+          <h4 className="font-bold">
+            You have been added to the waiting list.
+          </h4>
+          <h4 className="font-bold">
             We will contact you when the platform goes live!
-          </h4> */}
+          </h4>
         </div>
       ) : (
         <div
@@ -233,7 +231,7 @@ const App = () => {
             </div>
           </div>
 
-          <div className="mt-8 flex font-medium text-xs">
+          <div className="mt-2 flex font-medium text-xs">
             @{new Date().getFullYear()} ECS Platform. All rights reserved.
           </div>
         </div>
