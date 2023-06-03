@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LandingPage from "../assets/LandingPage.png";
 import Approve from "../assets/approve.png";
 import "./App.css";
 import countries from "./utils/countries";
 const endpointUrl = "/api/waitingList";
+const signUpCountEndpointUrl = "/api/signUpCount";
 
 const App = () => {
   const [isPhone, setIsPhone] = useState(null);
@@ -11,6 +12,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [revealDone, setRevealDone] = useState(false);
   const [hideMain, setHideMain] = useState(false);
+  const [signUpCount, setSignUpCount] = useState(null);
   var emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
   var phoneRegex = /^\d{9,15}$/;
 
@@ -178,6 +180,31 @@ const App = () => {
     );
   };
 
+  const loadSignUpCount = () => {
+    fetch(signUpCountEndpointUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        switch (response.status) {
+          case 200:
+            return response.json();
+          default:
+            break;
+        }
+      })
+      .then((body) => {
+        setSignUpCount(body.count + 100);
+      })
+      .catch((status) => {});
+  };
+
+  useEffect(() => {
+    loadSignUpCount();
+  }, []);
+
   return (
     <>
       {done ? (
@@ -196,10 +223,6 @@ const App = () => {
               the platform goes live!
             </h4>
           </div>
-
-          {/* <h4 className="font-bold">
-            We will contact you when the platform goes live!
-          </h4> */}
         </div>
       ) : (
         <div
@@ -211,6 +234,9 @@ const App = () => {
 
           <div className="flex md:flex-row flex-col-reverse justify-between items-center w-full grow">
             <div className="flex flex-col w-full px-2 md:w-1/2 text-justify">
+              <h1 className="lg:text-[40px] md:text-[30px] font-bold mb-4">
+                {signUpCount ?? 0} people have signed up!
+              </h1>
               <h1 className="text-4xl lg:text-[60px] md:text-[30px] font-bold mb-4">
                 Meet senders
               </h1>

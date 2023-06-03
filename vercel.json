@@ -3,6 +3,10 @@
         {
             "source": "/api/waitingList",
             "destination": "http://161.35.170.95/api/waiting-list-registration"
+        },
+        {
+            "source": "/api/signUpCount",
+            "destination": "http://161.35.170.95/api/signUpCount"
         }
     ]
 }
